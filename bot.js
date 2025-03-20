@@ -2,7 +2,7 @@ require("dotenv").config();
 const TelegramBot = require("node-telegram-bot-api");
 const mongoose = require("mongoose");
 const express = require("express");
-
+const imagePath = 'https://i.imgur.com/KUN4peM.jpeg'; 
 // Load environment variables before using them
 const TOKEN = process.env.TOKEN;
 const MONGO_URI = process.env.MONGO_URI;
@@ -39,8 +39,17 @@ app.post(`/webhook/${TOKEN}`, (req, res) => {
 });
 
 // Handle /start command
+//bot.onText(/\/start/, (msg) => {
+ // bot.sendMessage(msg.chat.id, "Welcome! In My Telegram Bot.");
+//});
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "Welcome! In My Telegram Bot.");
+    const chatId = msg.chat.id;
+    
+    // Greeting message
+    const greetingText = `Hello, ${msg.from.first_name}! 👋\nWelcome to Our BotMitra. Let me know how I can assist you.`;
+
+    // Send image with greeting message
+    bot.sendPhoto(chatId, imagePath, { caption: greetingText });
 });
 // ✅ Define Feedback Schema
 const feedbackSchema = new mongoose.Schema({
