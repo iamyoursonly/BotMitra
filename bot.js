@@ -40,7 +40,7 @@ app.post(`/webhook/${TOKEN}`, (req, res) => {
 
 // Handle /start command
 bot.onText(/\/start/, (msg) => {
-  bot.sendMessage(msg.chat.id, "Welcome! Your bot is up and running.");
+  bot.sendMessage(msg.chat.id, "Welcome! In My Telegram Bot.");
 });
 // ✅ Define Feedback Schema
 const feedbackSchema = new mongoose.Schema({
